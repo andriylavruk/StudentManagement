@@ -6,5 +6,10 @@ namespace StudentManagement
         {
             InitializeComponent();
         }
+
+        private void groups_save_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
