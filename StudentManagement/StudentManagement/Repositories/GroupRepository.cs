@@ -15,15 +15,51 @@ public class GroupRepository : IGroupRepository
     
     public void CreateGroup(Group group)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = "INSERT INTO [Groups] VALUES (@name)";
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = group.Name;
+
+            command.ExecuteNonQuery();
+        }
     }
+
     public void DeleteGroup(int id)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = "DELETE FROM [Groups] WHERE Id=@id";
+            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            command.ExecuteNonQuery();
+        }
     }
+
     public void UpdateGroup(Group group)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = @"UPDATE [Groups] 
+                                    SET Name=@name
+                                    WHERE Id=@id";
+
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = group.Name;
+            command.Parameters.Add("@id", SqlDbType.Int).Value = group.Id;
+
+            command.ExecuteNonQuery();
+        }
     }
 
     public IEnumerable<Group> GetAllGroups()

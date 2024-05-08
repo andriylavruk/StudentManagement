@@ -1,6 +1,7 @@
 ﻿using StudentManagement.Models;
 using StudentManagement.Repositories;
 using StudentManagement.Views;
+using System.Windows.Forms;
 
 namespace StudentManagement.Presenters;
 
@@ -54,25 +55,76 @@ public class GroupPresenter
     }
     private void AddNewGroup(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        _groupView.IsEdit = false;
     }
 
     private void LoadSelectedGroupToEdit(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        var group = (Group)_groupsBindingSource.Current;
+        _groupView.GroupId = group.Id.ToString();
+        _groupView.GroupName = group.Name;
+        _groupView.IsEdit = true;
     }
 
     private void SaveGroup(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        var model = new Group();
+        model.Id = Convert.ToInt32(_groupView.GroupId);
+        model.Name = _groupView.GroupName;
+
+        try
+        {
+            new Common.ModelDataValidation().Validate(model);
+
+            if (_groupView.IsEdit)
+            {
+                _groupRepository.UpdateGroup(model);
+                _groupView.Message = "Group updated successfuly";
+            }
+            else
+            {
+                _groupRepository.CreateGroup(model);
+                _groupView.Message = "Group created sucessfully";
+            }
+
+            _groupView.IsSuccessful = true;
+            LoadAllGroupList();
+            CleanviewFields();
+        }
+        catch (Exception ex)
+        {
+            _groupView.IsSuccessful = false;
+            _groupView.Message = ex.Message;
+        }
+    }
+    private void CleanviewFields()
+    {
+        _groupView.GroupId = "0";
+        _groupView.GroupName = string.Empty;
     }
 
     private void CancelAction(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        CleanviewFields();
     }
+
     private void DeleteSelectedGroup(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var group = (Group)_groupsBindingSource.Current;
+
+            _groupRepository.DeleteGroup(group.Id);
+            _groupView.IsSuccessful = true;
+            _groupView.Message = "Group deleted successfully";
+
+            LoadAllGroupList();
+        }
+        catch (Exception)
+        {
+            _groupView.IsSuccessful = false;
+            _groupView.Message = "An error ocurred, could not delete group";
+        }
+
     }
 }

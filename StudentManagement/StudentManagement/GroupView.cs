@@ -12,6 +12,7 @@ namespace StudentManagement
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents();
+            tabControl1.TabPages.Remove(tabPage_GroupDetail);
             groupView_close_btn.Click += delegate { Close(); };
         }
 
@@ -23,6 +24,55 @@ namespace StudentManagement
                 if (e.KeyCode == Keys.Enter)
                 {
                     SearchEvent?.Invoke(this, EventArgs.Empty);
+                }
+            };
+
+            groupList_create_btn.Click += delegate
+            {
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage_GroupList);
+                tabControl1.TabPages.Add(tabPage_GroupDetail);
+                tabPage_GroupDetail.Text = "Add new group";
+            };
+            
+            groupList_update_btn.Click += delegate
+            {
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage_GroupList);
+                tabControl1.TabPages.Add(tabPage_GroupDetail);
+                tabPage_GroupDetail.Text = "Update group";
+            };
+            
+            groups_save_btn.Click += delegate
+            {
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+
+                if (isSuccessful)
+                {
+                    tabControl1.TabPages.Remove(tabPage_GroupDetail);
+                    tabControl1.TabPages.Add(tabPage_GroupList);
+                }
+
+                MessageBox.Show(Message);
+            };
+            
+            groups_cancel_btn.Click += delegate
+            {
+                CancelEvent?.Invoke(this, EventArgs.Empty);
+                tabControl1.TabPages.Remove(tabPage_GroupDetail);
+                tabControl1.TabPages.Add(tabPage_GroupList);
+            };
+            
+            groupList_delete_btn.Click += delegate
+            {
+                var result = MessageBox.Show("Are you sure you want to delete the selected group?", 
+                    "Warning",
+                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show(Message);
                 }
             };
         }
