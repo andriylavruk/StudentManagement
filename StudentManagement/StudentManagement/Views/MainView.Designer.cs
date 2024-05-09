@@ -30,11 +30,13 @@
         {
             panel1 = new Panel();
             mainview_groups_btn = new Button();
+            mainview_students_btn = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(mainview_students_btn);
             panel1.Controls.Add(mainview_groups_btn);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -51,6 +53,16 @@
             mainview_groups_btn.TabIndex = 1;
             mainview_groups_btn.Text = "Groups";
             mainview_groups_btn.UseVisualStyleBackColor = true;
+            // 
+            // mainview_students_btn
+            // 
+            mainview_students_btn.Font = new Font("Segoe UI", 12F);
+            mainview_students_btn.Location = new Point(3, 136);
+            mainview_students_btn.Name = "mainview_students_btn";
+            mainview_students_btn.Size = new Size(194, 45);
+            mainview_students_btn.TabIndex = 2;
+            mainview_students_btn.Text = "Students";
+            mainview_students_btn.UseVisualStyleBackColor = true;
             // 
             // MainView
             // 
@@ -69,5 +81,6 @@
 
         private Panel panel1;
         private Button mainview_groups_btn;
+        private Button mainview_students_btn;
     }
 }

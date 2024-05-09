@@ -4,7 +4,6 @@ public interface IGroupView
 {
     string GroupId { get; set; }
     string GroupName { get; set; }
-
     string SearchValue { get; set; }
     bool IsEdit { get; set; }
     bool IsSuccessful { get; set; }

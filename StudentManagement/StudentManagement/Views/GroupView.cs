@@ -77,8 +77,8 @@ namespace StudentManagement
             };
         }
 
-        public string GroupId { get => groups_grounId_textBox.Text; set => groups_grounId_textBox.Text = value; }
-        public string GroupName { get => groups_grounName_textBox.Text; set => groups_grounName_textBox.Text = value; }
+        public string GroupId { get => groups_groupId_textBox.Text; set => groups_groupId_textBox.Text = value; }
+        public string GroupName { get => groups_groupName_textBox.Text; set => groups_groupName_textBox.Text = value; }
         public string SearchValue { get => groupList_search_textBox.Text; set => groupList_search_textBox.Text = value; }
         public bool IsEdit { get => isEdit; set => isEdit = value; }
         public bool IsSuccessful { get => isSuccessful; set => isSuccessful = value; }
@@ -99,8 +99,13 @@ namespace StudentManagement
         private static GroupView instance;
         public static GroupView GetInstace(Form parentContainer)
         {
-            if (instance == null || instance.IsDisposed)
+            if (instance == null || instance.IsDisposed || instance.tabControl1.SelectedTab == instance.tabPage_GroupDetail)
             {
+                if (instance != null)
+                {
+                    instance.Close();
+                }
+
                 instance = new GroupView();
                 instance.MdiParent = parentContainer;
                 instance.FormBorderStyle = FormBorderStyle.None;

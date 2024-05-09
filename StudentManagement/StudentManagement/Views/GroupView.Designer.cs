@@ -42,9 +42,9 @@
             groupList_dataGridView = new DataGridView();
             tabPage_GroupDetail = new TabPage();
             groups_groupId_label = new Label();
-            groups_grounId_textBox = new TextBox();
+            groups_groupId_textBox = new TextBox();
             groups_cancel_btn = new Button();
-            groups_grounName_textBox = new TextBox();
+            groups_groupName_textBox = new TextBox();
             groups_save_btn = new Button();
             groups_groupName_label = new Label();
             panel1.SuspendLayout();
@@ -185,9 +185,9 @@
             // tabPage_GroupDetail
             // 
             tabPage_GroupDetail.Controls.Add(groups_groupId_label);
-            tabPage_GroupDetail.Controls.Add(groups_grounId_textBox);
+            tabPage_GroupDetail.Controls.Add(groups_groupId_textBox);
             tabPage_GroupDetail.Controls.Add(groups_cancel_btn);
-            tabPage_GroupDetail.Controls.Add(groups_grounName_textBox);
+            tabPage_GroupDetail.Controls.Add(groups_groupName_textBox);
             tabPage_GroupDetail.Controls.Add(groups_save_btn);
             tabPage_GroupDetail.Controls.Add(groups_groupName_label);
             tabPage_GroupDetail.Location = new Point(4, 24);
@@ -207,13 +207,13 @@
             groups_groupId_label.TabIndex = 6;
             groups_groupId_label.Text = "Group Id";
             // 
-            // groups_grounId_textBox
+            // groups_groupId_textBox
             // 
-            groups_grounId_textBox.Enabled = false;
-            groups_grounId_textBox.Location = new Point(29, 54);
-            groups_grounId_textBox.Name = "groups_grounId_textBox";
-            groups_grounId_textBox.Size = new Size(170, 23);
-            groups_grounId_textBox.TabIndex = 5;
+            groups_groupId_textBox.Enabled = false;
+            groups_groupId_textBox.Location = new Point(29, 54);
+            groups_groupId_textBox.Name = "groups_groupId_textBox";
+            groups_groupId_textBox.Size = new Size(170, 23);
+            groups_groupId_textBox.TabIndex = 5;
             // 
             // groups_cancel_btn
             // 
@@ -224,12 +224,12 @@
             groups_cancel_btn.Text = "Cancel";
             groups_cancel_btn.UseVisualStyleBackColor = true;
             // 
-            // groups_grounName_textBox
+            // groups_groupName_textBox
             // 
-            groups_grounName_textBox.Location = new Point(29, 98);
-            groups_grounName_textBox.Name = "groups_grounName_textBox";
-            groups_grounName_textBox.Size = new Size(170, 23);
-            groups_grounName_textBox.TabIndex = 3;
+            groups_groupName_textBox.Location = new Point(29, 98);
+            groups_groupName_textBox.Name = "groups_groupName_textBox";
+            groups_groupName_textBox.Size = new Size(170, 23);
+            groups_groupName_textBox.TabIndex = 3;
             // 
             // groups_save_btn
             // 
@@ -278,7 +278,7 @@
         private TabPage tabPage_GroupList;
         private TabPage tabPage_GroupDetail;
         private Label groups_groupName_label;
-        private TextBox groups_grounName_textBox;
+        private TextBox groups_groupName_textBox;
         private Button groups_save_btn;
         private Button groupList_search_btn;
         private Button groupList_delete_btn;
@@ -289,7 +289,7 @@
         private DataGridView groupList_dataGridView;
         private Button groups_cancel_btn;
         private Label groups_groupId_label;
-        private TextBox groups_grounId_textBox;
+        private TextBox groups_groupId_textBox;
         private Button groupView_close_btn;
     }
 }

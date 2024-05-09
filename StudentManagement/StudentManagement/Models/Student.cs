@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 
 namespace StudentManagement.Models;
 
@@ -19,8 +20,24 @@ public class Student
     public string Surname { get; set; } = string.Empty;
 
     [DisplayName("GroupId")]
+    [Browsable(false)]
     public int? GroupId { get; set; }
 
-    [DisplayName("Student group")]
+    [Browsable(false)]
     public Group? StudentGroup { get; set; }
+
+    [DisplayName("Student group")]
+    [Required(ErrorMessage = "Group name is requerid")]
+    [StringLength(50, MinimumLength = 3, ErrorMessage = "Surname must be between 3 and 50 characters")]
+
+    public string Group { get => StudentGroup!.Name; }
+
+    public Student(int id, string name, string surname, int? groupId, Group? studentGroup)
+    {
+        Id = id;
+        Name = name;
+        Surname = surname;
+        GroupId = groupId;
+        StudentGroup = studentGroup;
+    }
 }
