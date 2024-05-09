@@ -49,7 +49,6 @@
             students_studentId_label = new Label();
             students_studentId_textBox = new TextBox();
             students_cancel_btn = new Button();
-            students_groupName_textBox = new TextBox();
             students_save_btn = new Button();
             students_groupName_label = new Label();
             panel1.SuspendLayout();
@@ -178,11 +177,13 @@
             // 
             // studentList_dataGridView
             // 
+            studentList_dataGridView.AllowUserToAddRows = false;
             studentList_dataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             studentList_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             studentList_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             studentList_dataGridView.Location = new Point(36, 80);
             studentList_dataGridView.Name = "studentList_dataGridView";
+            studentList_dataGridView.ReadOnly = true;
             studentList_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             studentList_dataGridView.Size = new Size(648, 257);
             studentList_dataGridView.TabIndex = 0;
@@ -197,7 +198,6 @@
             tabPage_StudentDetail.Controls.Add(students_studentId_label);
             tabPage_StudentDetail.Controls.Add(students_studentId_textBox);
             tabPage_StudentDetail.Controls.Add(students_cancel_btn);
-            tabPage_StudentDetail.Controls.Add(students_groupName_textBox);
             tabPage_StudentDetail.Controls.Add(students_save_btn);
             tabPage_StudentDetail.Controls.Add(students_groupName_label);
             tabPage_StudentDetail.Location = new Point(4, 24);
@@ -211,11 +211,10 @@
             // students_groupList_comboBox
             // 
             students_groupList_comboBox.FormattingEnabled = true;
-            students_groupList_comboBox.Location = new Point(413, 62);
+            students_groupList_comboBox.Location = new Point(29, 190);
             students_groupList_comboBox.Name = "students_groupList_comboBox";
-            students_groupList_comboBox.Size = new Size(121, 23);
+            students_groupList_comboBox.Size = new Size(170, 23);
             students_groupList_comboBox.TabIndex = 11;
-            students_groupList_comboBox.SelectedIndexChanged += students_groupList_comboBox_SelectedIndexChanged;
             // 
             // students_studentSurname_label
             // 
@@ -265,6 +264,7 @@
             students_studentId_textBox.Name = "students_studentId_textBox";
             students_studentId_textBox.Size = new Size(170, 23);
             students_studentId_textBox.TabIndex = 5;
+            students_studentId_textBox.Text = "0";
             // 
             // students_cancel_btn
             // 
@@ -274,13 +274,6 @@
             students_cancel_btn.TabIndex = 4;
             students_cancel_btn.Text = "Cancel";
             students_cancel_btn.UseVisualStyleBackColor = true;
-            // 
-            // students_groupName_textBox
-            // 
-            students_groupName_textBox.Location = new Point(29, 190);
-            students_groupName_textBox.Name = "students_groupName_textBox";
-            students_groupName_textBox.Size = new Size(170, 23);
-            students_groupName_textBox.TabIndex = 3;
             // 
             // students_save_btn
             // 
@@ -328,7 +321,6 @@
         private TabPage tabPage_StudentList;
         private TabPage tabPage_StudentDetail;
         private Label students_groupName_label;
-        private TextBox students_groupName_textBox;
         private Button students_save_btn;
         private Button studentList_search_btn;
         private Button studentList_delete_btn;

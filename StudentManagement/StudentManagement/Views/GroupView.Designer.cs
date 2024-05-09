@@ -173,11 +173,13 @@
             // 
             // groupList_dataGridView
             // 
+            groupList_dataGridView.AllowUserToAddRows = false;
             groupList_dataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupList_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             groupList_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             groupList_dataGridView.Location = new Point(36, 80);
             groupList_dataGridView.Name = "groupList_dataGridView";
+            groupList_dataGridView.ReadOnly = true;
             groupList_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             groupList_dataGridView.Size = new Size(648, 257);
             groupList_dataGridView.TabIndex = 0;
@@ -214,6 +216,7 @@
             groups_groupId_textBox.Name = "groups_groupId_textBox";
             groups_groupId_textBox.Size = new Size(170, 23);
             groups_groupId_textBox.TabIndex = 5;
+            groups_groupId_textBox.Text = "0";
             // 
             // groups_cancel_btn
             // 

@@ -1,6 +1,5 @@
 using StudentManagement.Models;
 using StudentManagement.Views;
-using System.Data;
 
 namespace StudentManagement
 {
@@ -84,7 +83,6 @@ namespace StudentManagement
         public string StudentId { get => students_studentId_textBox.Text; set => students_studentId_textBox.Text = value; }
         public string StudentName { get => students_studentName_textBox.Text; set => students_studentName_textBox.Text = value; }
         public string StudentSurname { get => students_studentSurname_textBox.Text; set => students_studentSurname_textBox.Text = value; }
-        public string StudentGroupId { get => students_groupName_textBox.Text; set => students_groupName_textBox.Text = value; }
         public Group? StudentGroup
         {
             get
@@ -113,8 +111,7 @@ namespace StudentManagement
 
         public void SetStudentListBindingSource(BindingSource studentList)
         {
-            studentList_dataGridView.DataSource = studentList;
-            
+            studentList_dataGridView.DataSource = studentList; 
         }
 
         private static StudentView instance;
@@ -150,14 +147,6 @@ namespace StudentManagement
             students_groupList_comboBox.DataSource = groups;
             students_groupList_comboBox.ValueMember = "Id";
             students_groupList_comboBox.DisplayMember = "Name";
-        }
-
-        private void students_groupList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (students_groupList_comboBox.SelectedValue?.ToString() != null)
-            {
-                StudentGroupId = (Convert.ToInt32(students_groupList_comboBox.SelectedValue!.ToString())).ToString();
-            }            
         }
     }
 }

@@ -15,17 +15,55 @@ public class StudentRepository : IStudentRepository
 
     public void CreateStudent(Student student)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = "INSERT INTO [Students] VALUES (@name, @surname, @group_id)";
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = student.Name;
+            command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = student.Surname;
+            command.Parameters.Add("@group_id", SqlDbType.Int).Value = student.StudentGroup!.Id;
+
+            command.ExecuteNonQuery();
+        }
     }
 
     public void DeleteStudent(int id)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = "DELETE FROM [Students] WHERE Id=@id";
+            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+            command.ExecuteNonQuery();
+        }
     }
 
     public void UpdateStudent(Student student)
     {
-        throw new NotImplementedException();
+        using (var connection = new SqlConnection(_connectionString))
+        using (var command = new SqlCommand())
+        {
+            connection.Open();
+
+            command.Connection = connection;
+            command.CommandText = @"UPDATE [Students] 
+                                    SET Name=@name, Surname=@surname, Group_Id=@group_id
+                                    WHERE Id=@id";
+
+            command.Parameters.Add("@id", SqlDbType.Int).Value = student.Id;
+            command.Parameters.Add("@name", SqlDbType.NVarChar).Value = student.Name;
+            command.Parameters.Add("@surname", SqlDbType.NVarChar).Value = student.Surname;
+            command.Parameters.Add("@group_id", SqlDbType.NVarChar).Value = student.StudentGroup!.Id;
+
+            command.ExecuteNonQuery();
+        }
     }
 
     public IEnumerable<Student> GetAllStudents()

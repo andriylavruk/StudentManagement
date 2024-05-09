@@ -62,6 +62,13 @@ public class StudentPresenter
     private void AddNewStudent(object sender, EventArgs e)
     {
         _studentView.IsEdit = false;
+
+        var student = (Student)_studentsBindingSource.Current;
+        CleanviewFields();
+
+        _groupsBindingSource.DataSource = null;
+        _groupsBindingSource.DataSource = _groupList;
+        _studentView.SetComboBoxData(_groupsBindingSource);
     }
 
     private void LoadSelectedStudentToEdit(object sender, EventArgs e)
@@ -70,7 +77,6 @@ public class StudentPresenter
         _studentView.StudentId = student.Id.ToString();
         _studentView.StudentName = student.Name;
         _studentView.StudentSurname = student.Surname;
-        _studentView.StudentGroupId = student.GroupId.ToString()!;
         _studentView.StudentGroup = student.StudentGroup!;
 
         var list = _groupList.ToList();
@@ -92,7 +98,7 @@ public class StudentPresenter
         var Id = Convert.ToInt32(_studentView.StudentId);
         var Name = _studentView.StudentName;
         var Surname = _studentView.StudentSurname;
-        var GroupId = Convert.ToInt32(_studentView.StudentGroupId);
+        var GroupId = _studentView.StudentGroup!.Id;
         var StudentGroup = _studentView.StudentGroup;
 
         var model = new Student(Id, Name, Surname, GroupId, StudentGroup);
@@ -127,8 +133,11 @@ public class StudentPresenter
         _studentView.StudentId = "0";
         _studentView.StudentName = string.Empty;
         _studentView.StudentSurname = string.Empty;
-        _studentView.StudentGroupId = string.Empty;
-        _studentView.StudentGroup = default;
+        _studentView.StudentGroup = new Group()
+        {
+            Id = 0,
+            Name = string.Empty
+        };
     }
 
     private void CancelAction(object sender, EventArgs e)

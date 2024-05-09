@@ -7,7 +7,6 @@ public interface IStudentView
     string StudentId { get; set; }
     string StudentName { get; set; }
     string StudentSurname { get; set; }
-    string StudentGroupId { get; set; }
     Group? StudentGroup { get; set; }
 
     string SearchValue { get; set; }
