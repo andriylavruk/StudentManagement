@@ -1,3 +1,4 @@
+using StudentManagement.Models;
 using StudentManagement.Views;
 
 namespace StudentManagement
@@ -7,6 +8,8 @@ namespace StudentManagement
         private string message;
         private bool isSuccessful;
         private bool isEdit;
+
+        private User _userInfo;
 
         public GroupView()
         {
@@ -34,7 +37,7 @@ namespace StudentManagement
                 tabControl1.TabPages.Add(tabPage_GroupDetail);
                 tabPage_GroupDetail.Text = "Add new group";
             };
-            
+
             groupList_update_btn.Click += delegate
             {
                 EditEvent?.Invoke(this, EventArgs.Empty);
@@ -42,7 +45,7 @@ namespace StudentManagement
                 tabControl1.TabPages.Add(tabPage_GroupDetail);
                 tabPage_GroupDetail.Text = "Update group";
             };
-            
+
             groups_save_btn.Click += delegate
             {
                 SaveEvent?.Invoke(this, EventArgs.Empty);
@@ -55,17 +58,17 @@ namespace StudentManagement
 
                 MessageBox.Show(Message);
             };
-            
+
             groups_cancel_btn.Click += delegate
             {
                 CancelEvent?.Invoke(this, EventArgs.Empty);
                 tabControl1.TabPages.Remove(tabPage_GroupDetail);
                 tabControl1.TabPages.Add(tabPage_GroupList);
             };
-            
+
             groupList_delete_btn.Click += delegate
             {
-                var result = MessageBox.Show("Are you sure you want to delete the selected group?", 
+                var result = MessageBox.Show("Are you sure you want to delete the selected group? All students who are members of the group will also be removed.",
                     "Warning",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -83,6 +86,7 @@ namespace StudentManagement
         public bool IsEdit { get => isEdit; set => isEdit = value; }
         public bool IsSuccessful { get => isSuccessful; set => isSuccessful = value; }
         public string Message { get => message; set => message = value; }
+        public User UserInfo { get => _userInfo; init => _userInfo = value; }
 
         public event EventHandler SearchEvent;
         public event EventHandler AddNewEvent;
@@ -127,6 +131,21 @@ namespace StudentManagement
         private void groups_save_btn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void GroupView_Load(object sender, EventArgs e)
+        {
+            if(_userInfo.Role!.Name != "admin")
+            {
+                groupList_create_btn.Visible = false;
+                groupList_update_btn.Visible = false;
+                groupList_delete_btn.Visible = false;
+            }
+        }
+
+        public void SetUserInfo(User user)
+        {
+            _userInfo = user;
         }
     }
 }

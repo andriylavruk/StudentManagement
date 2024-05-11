@@ -262,6 +262,7 @@
             Controls.Add(panel1);
             Name = "GroupView";
             Text = "Form1";
+            Load += GroupView_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);

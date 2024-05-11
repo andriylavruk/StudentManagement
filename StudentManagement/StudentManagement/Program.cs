@@ -23,9 +23,8 @@ internal static class Program
         Configuration = builder.Build();
         var sqlConnectionString = Configuration.GetConnectionString("DefaultConnection")!;
 
-        IMainView view = new MainView();
-        new MainPresenter(view, sqlConnectionString);
+        IUserRepository userRepository = new UserRepository(sqlConnectionString);
 
-        Application.Run((Form)view);
+        Application.Run(new LoginForm(userRepository, sqlConnectionString));
     }
 }

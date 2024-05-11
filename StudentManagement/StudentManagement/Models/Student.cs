@@ -28,7 +28,6 @@ public class Student
     [DisplayName("Student group")]
     [Required(ErrorMessage = "Group name is requerid")]
     [StringLength(50, MinimumLength = 3, ErrorMessage = "Surname must be between 3 and 50 characters")]
-
     public string Group { get => StudentGroup!.Name; }
 
     public Student(int id, string name, string surname, int? groupId, Group? studentGroup)

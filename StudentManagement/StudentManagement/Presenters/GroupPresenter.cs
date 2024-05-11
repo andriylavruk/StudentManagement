@@ -11,7 +11,7 @@ public class GroupPresenter
     private BindingSource _groupsBindingSource;
     private IEnumerable<Group> _groupsList;
 
-    public GroupPresenter(IGroupView view, IGroupRepository repository)
+    public GroupPresenter(IGroupView view, User userInfo, IGroupRepository repository)
     {
         _groupsBindingSource = new BindingSource();
         _groupView = view;
@@ -28,6 +28,7 @@ public class GroupPresenter
         _groupView.SetGroupListBindingSource(_groupsBindingSource);
         
         LoadAllGroupList();
+        _groupView.SetUserInfo(userInfo);
         
         _groupView.Show();
     }
@@ -124,6 +125,5 @@ public class GroupPresenter
             _groupView.IsSuccessful = false;
             _groupView.Message = "An error ocurred, could not delete group";
         }
-
     }
 }

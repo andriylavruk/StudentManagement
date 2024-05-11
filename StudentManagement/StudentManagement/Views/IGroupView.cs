@@ -1,4 +1,6 @@
-﻿namespace StudentManagement.Views;
+﻿using StudentManagement.Models;
+
+namespace StudentManagement.Views;
 
 public interface IGroupView
 {
@@ -8,6 +10,7 @@ public interface IGroupView
     bool IsEdit { get; set; }
     bool IsSuccessful { get; set; }
     string Message { get; set; }
+    User UserInfo { get; init; }
 
     event EventHandler SearchEvent;
     event EventHandler AddNewEvent;
@@ -16,6 +19,7 @@ public interface IGroupView
     event EventHandler SaveEvent;
     event EventHandler CancelEvent;
 
+    void SetUserInfo(User user);
     void SetGroupListBindingSource(BindingSource groupList);
     void Show();
 }
